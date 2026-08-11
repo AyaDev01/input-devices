@@ -1,0 +1,213 @@
+<html lang="ar" dir="rtl"><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Common Computer Input Devices</title>
+<style>
+  :root{
+    --bg1:#eaf4ff;
+    --bg2:#dcecff;
+    --card:#ffffff;
+    --ink:#12314f;
+    --accent:#2f7bd8;
+    --accent-dark:#1c5aa8;
+    --line:#bcd9f7;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    min-height:100vh;
+    font-family:"Segoe UI", Tahoma, Arial, sans-serif;
+    background:linear-gradient(160deg,var(--bg1),var(--bg2));
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    padding:32px 16px 60px;
+  }
+  h1{
+    color:var(--accent-dark);
+    font-size:clamp(24px,4.5vw,42px);
+    letter-spacing:1px;
+    text-align:center;
+    margin:0 0 6px;
+    font-weight:800;
+  }
+  p.sub{
+    color:#4c6d8c;
+    margin:0 0 28px;
+    font-size:15px;
+    text-align:center;
+  }
+  .grid{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:16px;
+    width:100%;
+    max-width:1100px;
+  }
+  @media (max-width:850px){ .grid{grid-template-columns:repeat(2,1fr);} }
+  @media (max-width:420px){ .grid{grid-template-columns:1fr;} }
+
+  .card{
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:14px;
+    padding:22px 10px 16px;
+    text-align:center;
+    cursor:pointer;
+    user-select:none;
+    box-shadow:0 3px 10px rgba(20,60,110,0.06);
+    transition:transform .15s ease, box-shadow .15s ease, background .15s ease;
+    position:relative;
+  }
+  .card:hover{
+    transform:translateY(-4px);
+    box-shadow:0 10px 22px rgba(20,60,110,0.15);
+  }
+  .card:active, .card.playing{
+    transform:scale(0.96);
+    background:#eaf5ff;
+  }
+  .icon{
+    font-size:52px;
+    line-height:1;
+    margin-bottom:14px;
+    display:block;
+  }
+  .name{
+    font-weight:800;
+    color:var(--ink);
+    font-size:16px;
+    letter-spacing:0.5px;
+  }
+  .speaker{
+    position:absolute;
+    top:8px;
+    left:10px;
+    font-size:16px;
+    opacity:0.35;
+  }
+  footer{
+    margin-top:34px;
+    color:#5c7ea0;
+    font-size:13px;
+    text-align:center;
+  }
+</style>
+</head>
+<body>
+
+  <h1>COMMON COMPUTER INPUT DEVICES</h1>
+  <p class="sub">دوس على أي صورة عشان تسمع نطق الكلمة بالإنجليزي 🔊</p>
+
+  <div class="grid" id="grid"><div class="card">
+      <span class="speaker">🔊</span>
+      <span class="icon">⌨️</span>
+      <span class="name">Keyboard</span>
+    </div><div class="card">
+      <span class="speaker">🔊</span>
+      <span class="icon">🖱️</span>
+      <span class="name">Mouse</span>
+    </div><div class="card">
+      <span class="speaker">🔊</span>
+      <span class="icon">👆</span>
+      <span class="name">Touchpad</span>
+    </div><div class="card">
+      <span class="speaker">🔊</span>
+      <span class="icon">🔵</span>
+      <span class="name">Trackball</span>
+    </div><div class="card playing">
+      <span class="speaker">🔊</span>
+      <span class="icon">🎤</span>
+      <span class="name">Microphone</span>
+    </div><div class="card playing">
+      <span class="speaker">🔊</span>
+      <span class="icon">📷</span>
+      <span class="name">Webcam</span>
+    </div><div class="card">
+      <span class="speaker">🔊</span>
+      <span class="icon">🖨️</span>
+      <span class="name">Scanner</span>
+    </div><div class="card">
+      <span class="speaker">🔊</span>
+      <span class="icon">📸</span>
+      <span class="name">Digital Camera</span>
+    </div><div class="card">
+      <span class="speaker">🔊</span>
+      <span class="icon">🖊️</span>
+      <span class="name">Drawing Tablet</span>
+    </div><div class="card">
+      <span class="speaker">🔊</span>
+      <span class="icon">📊</span>
+      <span class="name">Barcode Reader</span>
+    </div><div class="card">
+      <span class="speaker">🔊</span>
+      <span class="icon">🕹️</span>
+      <span class="name">Joystick</span>
+    </div><div class="card">
+      <span class="speaker">🔊</span>
+      <span class="icon">📱</span>
+      <span class="name">Touchscreen</span>
+    </div></div>
+
+  <footer>اضغط على أي كارت للاستماع للنطق</footer>
+
+<script>
+  const items = [
+    { name:"Keyboard",       icon:"⌨️" },
+    { name:"Mouse",          icon:"🖱️" },
+    { name:"Touchpad",       icon:"👆" },
+    { name:"Trackball",      icon:"🔵" },
+    { name:"Microphone",     icon:"🎤" },
+    { name:"Webcam",         icon:"📷" },
+    { name:"Scanner",        icon:"🖨️" },
+    { name:"Digital Camera", icon:"📸" },
+    { name:"Drawing Tablet", icon:"🖊️" },
+    { name:"Barcode Reader", icon:"📊" },
+    { name:"Joystick",       icon:"🕹️" },
+    { name:"Touchscreen",    icon:"📱" },
+  ];
+
+  const grid = document.getElementById("grid");
+
+  items.forEach(item => {
+    const card = document.createElement("div");
+    card.className = "card";
+    card.innerHTML = `
+      <span class="speaker">🔊</span>
+      <span class="icon">${item.icon}</span>
+      <span class="name">${item.name}</span>
+    `;
+    card.addEventListener("click", () => speakWord(item.name, card));
+    grid.appendChild(card);
+  });
+
+  function speakWord(text, card){
+    if (!('speechSynthesis' in window)) {
+      alert("المتصفح ده مش بيدعم النطق الصوتي.");
+      return;
+    }
+    window.speechSynthesis.cancel();
+
+    const utter = new SpeechSynthesisUtterance(text);
+    utter.lang = "en-US";
+    utter.rate = 0.85;   // أبطأ شوية عشان النطق يبقى واضح
+    utter.pitch = 1;
+
+    // حاول تختار صوت إنجليزي واضح لو متاح
+    const voices = window.speechSynthesis.getVoices();
+    const enVoice = voices.find(v => v.lang === "en-US") || voices.find(v => v.lang.startsWith("en"));
+    if (enVoice) utter.voice = enVoice;
+
+    card.classList.add("playing");
+    utter.onend = () => card.classList.remove("playing");
+
+    window.speechSynthesis.speak(utter);
+  }
+
+  // تحميل الأصوات مبكرًا (بعض المتصفحات محتاجة الحدث ده)
+  window.speechSynthesis.onvoiceschanged = () => window.speechSynthesis.getVoices();
+</script>
+
+
+
+</body></html>
